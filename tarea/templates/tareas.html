@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="container mt-5">
+    <h2 class="text-center display-6">Mis Tareas</h2>
+    <div class="d-flex justify-content-evenly">
+        <div class="col-md-4">
+            <h2 class="text-center">Tareas Pendientes</h2>
+            {% for tarea in list_tareas %}
+
+            <ul class="list-group mt-3">
+                <a class="list-group-item" href="{% url 'detalle_tarea' tarea.id%}">
+                    {% if tarea.importancia %}
+                    <h3 style="color: red;">🔔 {{tarea.titulo}}</h3>
+                    {% else %}
+                    <h3 style="color: aqua;">{{tarea.titulo}}</h3>
+                    {% endif %}
+                    {{tarea.descripcion}}
+
+                    <p><span style="font-weight: bold;">Tarea para:</span> {{tarea.user.username}}</p>
+                </a>
+            </ul>
+
+            {% endfor %}
+        </div>
+
+        <div class="col-md-5" style="height: 500px;">
+            <iframe src="{% url 'tareasCompletadas'%}" frameborder="0" height="100%" width="100%" scrolling="auto">
+    
+            </iframe>
+        </div>
+        
+    </div>
+
+    
+</section>
+{% endblock %}

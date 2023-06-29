@@ -1,0 +1,29 @@
+{% extends "base.html" %} {% block content %}
+
+<main class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <form action="/login/" method="POST" class="card card-body mt-5">
+                <h2 class="text-center">Iniciar Sesion</h2>
+                {{error}} {% csrf_token%}
+
+                <div class="mb-3">
+                    <label for="id_username">Usuario:</label>
+
+                    <input type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username"
+                        autofocus="" required="" id="id_username" placeholder="Escribe tu Usuario"
+                        class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="id_password1">Clave:</label>
+
+                    <input type="password" name="password" autocomplete="new-password" required="" id="id_password1"
+                        aria-autocomplete="list" placeholder="Escribe tu Clave" class="form-control" />
+                </div>
+                <button class="btn btn-success">Iniciar Sesion</button>
+            </form>
+            {% endblock %}
+        </div>
+    </div>
+</main>

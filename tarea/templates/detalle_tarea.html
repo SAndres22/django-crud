@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<main class="container mt-5">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <form method="POST" class="card card-body">
+                <h2 class="text-center">Detalle de la tarea</h2>
+
+                {{error}}
+                {% csrf_token%}
+
+                {{form.as_div}}
+
+                <button class="btn btn-warning">
+                    Actualizar
+                </button>
+            </form>
+
+            <!-- Completar una tarea -->
+
+            <div class="d-flex justify-content-around">
+                <form action="{% url 'tarea_Completada' tarea.id %}" method="POST">
+                    {% csrf_token%}
+                    <button class="btn btn-success">
+                        Tarea completada
+                    </button>
+                </form>
+    
+                <!-- Eliminar una tarea -->
+    
+                <form action="{% url 'tarea_Eliminada' tarea.id %}" method="POST">
+                    {% csrf_token%}
+                    <button class="btn btn-danger">
+                        Eliminar
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>    
+</main>          
+
+{% endblock %}
